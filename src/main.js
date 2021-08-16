@@ -14,6 +14,8 @@ import 'vue-phone-number-input/dist/vue-phone-number-input.css';
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 
+import VueLoading from 'vuejs-loading-plugin'
+
 Vue.use(ElementUI);
 
 Vue.component('vue-phone-number-input', VuePhoneNumberInput);
@@ -31,6 +33,18 @@ axios.defaults.baseURL="https://api.urukstage.hibridmena.com/api/"
 axios.defaults.headers.common["Access-Control-Allow-Origin"]="*"
 axios.defaults.headers.withCredentials=true;
 
+import Loader from './components/Loader.vue'
+Vue.use(VueLoading)
+
+// overwrite defaults
+Vue.use(VueLoading, {
+  dark: true, // default false
+  text: 'Ladataan', // default 'Loading'
+  loading: true, // default false
+  customLoader: Loader, // replaces the spinner and text with your own
+  background: 'rgb(255,255,255)', // set custom background
+  classes: ['myclass'] // array, object or string
+})
 new Vue({
   router,
   render: h => h(App)

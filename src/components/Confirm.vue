@@ -1,7 +1,12 @@
 <template>
   <div class="">
     <div class="background">
-        <p class="slider-title pt-5">Complete Your Profile </p>
+      <div class="container">
+        <div class="row">
+          <img class="logo-left mt-4" src="../assets/mona-logo.png" alt="Card image cap">
+        </div>
+      </div>
+        <p class="slider-title pb-5">Complete Your Profile </p>
       <div class="container">
         <div class=" d-flex justify-content-center">
           <div class="box col-md-4 text-center">
@@ -27,7 +32,7 @@ export default {
 }
 </script>
 
-<style>
+<style scopped>
 .confirm-text{
   font-size:12px;
   color:grey;
@@ -36,4 +41,10 @@ export default {
   color:#f0b23b;
   font-weight:bold;
 }
+@media(max-width:992px){
+  .box{
+    margin-top:100px !important;
+  }
+}
+
 </style>

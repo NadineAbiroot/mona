@@ -1,7 +1,12 @@
 <template>
   <div class="">
     <div class="background">
-      <p class="slider-title pt-5"> What Type Of Account do you want to create</p>
+      <div class="container">
+        <div class="row">
+          <img class="logo-left mt-4" src="../assets/mona-logo.png" alt="Card image cap">
+        </div>
+      </div>
+      <p class="slider-title"> What Type Of Account do you want to create</p>
       <div class="container">
       <div class="row cardsPosition pt-5">
         <div class="col-md-3 card" v-for="account in accounts" :key="account.id" @click="redirect( account.id ,account.name )">
@@ -24,6 +29,7 @@
 </template>
 
 <script>
+import { asyncLoading } from 'vuejs-loading-plugin'
 
 export default {
   name:'Account',
@@ -37,8 +43,8 @@ export default {
   },
 
   methods: {
-    AccountList() {
-      this.axios.get('accounts', this.accounts)
+    async AccountList() {
+      asyncLoading(this.axios.get('accounts', this.accounts)
           .then((response) => {
             // this.accounts=account.response.data
             this.accounts = response.data.data
@@ -46,7 +52,7 @@ export default {
           })
           .catch((error) => {
             this.errors = error.response.data.data
-          })
+          }))
     },
     redirect(id,name){
       if(name === "Organizational"){
@@ -75,7 +81,7 @@ export default {
 }
 .slider-title{
   color:white;
-  font-size:25px;
+  font-size:35px;
   font-weight:bold;
 }
 .card {

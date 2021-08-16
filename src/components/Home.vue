@@ -1,7 +1,7 @@
 <template>
   <div class="">
     <div class="background">
-      <img class="logo my-4 my-md-0" src="../assets/mona-logo.png" alt="Card image cap">
+      <img class="logo mt-4 mb-md-0" src="../assets/mona-logo.png" alt="Card image cap">
     <div class="container pt-4">
       <img class="card-img-top" src="../assets/relationships.jpg" alt="Card image cap">
     </div>

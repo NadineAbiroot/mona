@@ -1,7 +1,7 @@
 <template>
   <div class="">
     <div class="background">
-      <img class="logo my-4 my-md-0" src="../assets/mona-logo.png" alt="Card image cap">
+      <img class="logo mt-4" src="../assets/mona-logo.png" alt="Card image cap">
     <div class="container">
       <div class=" d-flex justify-content-center">
         <div class="box col-md-4">
@@ -40,6 +40,7 @@
 
 import {required} from 'vuelidate/lib/validators'
 import email from "vuelidate/lib/validators/email";
+import { asyncLoading } from 'vuejs-loading-plugin'
 
 export default {
   name:"SignUp",
@@ -66,17 +67,19 @@ export default {
     }
   },
   methods: {
-   async signUp() {
-      this.axios.post('check-email-availability', {email:this.email})
-          .then(() => {
-            localStorage.setItem('email' , this.email)
-            this.errors = null
-            this.$router.push('/account')
-          })
-          .catch((error) => {
-            this.errors = error.response.data.data
-          })
-      this.loading = true;
+    signUp() {
+     asyncLoading(
+         this.axios.post('check-email-availability', {email:this.email})
+         .then(() => {
+           localStorage.setItem('email' , this.email)
+           this.errors = null
+           this.$router.push('/account')
+         })
+         .catch((error) => {
+           this.errors = error.response.data.data
+         }))
+
+      // this.loading = true;
     },
     setEmail(value) {
       this.email = value
@@ -157,6 +160,9 @@ body {
   text-decoration: none;
   margin: 2px 10px 2px 0;
   display: inline-block;
+}
+input[type=email]{
+  width:380px;
 }
 .signup-button button{
   background-color: #0071bc !important;

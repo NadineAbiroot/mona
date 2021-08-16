@@ -3,7 +3,7 @@
     <div class="background">
       <div class="container">
         <div class="row">
-          <img class="logo-left mt-4 my-md-0" src="../assets/mona-logo.png" alt="Card image cap">
+          <img class="logo-left mt-4" src="../assets/mona-logo.png" alt="Card image cap">
         </div>
       </div>
       <div class="container">
@@ -33,6 +33,8 @@
 </template>
 
 <script>
+import {asyncLoading} from "vuejs-loading-plugin";
+
 export default {
   name: 'Plans',
   data() {
@@ -47,23 +49,24 @@ export default {
   },
 
   methods: {
-    Plans() {
-      this.axios.get('plans', this.plansList)
+     Plans() {
+      asyncLoading(
+          this.axios.get('plans', this.plansList)
           .then((response) => {
             this.plansList = response.data.data
           })
           .catch((error) => {
             this.errors = error.response.data.data
-          })
+          }))
     },
     planRedirect(id) {
-      this.axios.post('user/plan', {plan_id: id})
+      asyncLoading(this.axios.post('user/plan', {plan_id: id})
           .then(() => {
             this.$router.push('/confirm')
           })
           .catch((error) => {
             this.errors = error.response.data.data
-          })
+          }))
     }
   },
 }

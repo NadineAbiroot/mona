@@ -17,6 +17,7 @@
     "vue-axios": "^3.2.5",
     "vue-phone-number-input": "^1.1.10",
     "vue-router": "^3.5.2",
+    "vuejs-loading-plugin": "^1.0.51",
     "vuelidate": "^0.7.6"
   },
   "devDependencies": {
